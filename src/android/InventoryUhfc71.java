@@ -38,7 +38,7 @@ public class InventoryUhfc71 {
 	public RFIDWithUHF mReader; 
 	public boolean loopFlag;
 	public String strBarcode = new String();
-	Barcode2DWithSoft barcode2DWithSoft=null;
+	Barcode2DWithSoft barcode2DWithSoft;
 	List<String> listaTags;
 	private HashMap<String, String> map;
 	private ArrayList<HashMap<String, String>> tagList;
@@ -123,12 +123,12 @@ public class InventoryUhfc71 {
     };
 
 	public void ScanBarcode() {
-		if(barcode2DWithSoft!=null) {
+		//if(barcode2DWithSoft!=null) {
             //Log.i(TAG,"ScanBarcode");
 
-            barcode2DWithSoft.scan();
+			barcode2DWithSoft.scan();
             barcode2DWithSoft.setScanCallback(ScanBack);
-        }
+        //}
 	}
 
 	public String GetBarcode() {
