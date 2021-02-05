@@ -51,7 +51,7 @@ public class InventoryUhfc71 {
 		String stato = "0";
 		
 		boolean sav = false;
-		String strBarcode = "";
+		String strBarcode = new String();
 		barcode2DWithSoft = Barcode2DWithSoft.getInstance();
 		try {
 			mReader = RFIDWithUHF.getInstance();
