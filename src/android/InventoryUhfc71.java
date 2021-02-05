@@ -107,7 +107,7 @@ public class InventoryUhfc71 {
                     //Log.i(TAG,"Scan fail");
                 }
             }else{
-                String barCode = "";
+                String barCode = "LISTO";
 
 
               //  String res = new String(dd,"gb2312");
