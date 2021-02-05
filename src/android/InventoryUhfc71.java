@@ -100,23 +100,23 @@ public class InventoryUhfc71 {
         public void onScanComplete(int i, int length, byte[] bytes) {
             if (length < 1) {
                 if (length == -1) {
-                    strBarcode += "Scan cancel";
+                    this.strBarcode += "Scan cancel";
                 } else if (length == 0) {
-					strBarcode += "Scan TimeOut";
+					this.strBarcode += "Scan TimeOut";
                 } else {
                     //Log.i(TAG,"Scan fail");
                 }
             }else{
-                barCode="";
+                String barCode = "";
 
 
               //  String res = new String(dd,"gb2312");
-                try {
+                //try {
                     //Log.i("Ascii",seldata);
                     barCode = new String(bytes, 0, length, "ASCII");
-                }
-                catch (UnsupportedEncodingException ex)   {}
-                strBarcode = barCode;
+                //}
+                //catch (UnsupportedEncodingException ex)   {}
+                this.strBarcode = barCode;
             }
 
         }
@@ -132,7 +132,7 @@ public class InventoryUhfc71 {
 	}
 
 	public String GetBarcode() {
-		return strBarcode;
+		return this.strBarcode;
 	}
 
 	public void StartInventoryStream() {
