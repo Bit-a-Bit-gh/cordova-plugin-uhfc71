@@ -36,7 +36,7 @@ public class InventoryUhfc71 {
 	public Context  mContext;
 	public RFIDWithUHF mReader; 
 	public boolean loopFlag;
-	public String barCode="";
+	public String strBarcode = new String();
 	Barcode2DWithSoft barcode2DWithSoft=null;
 	List<String> listaTags;
 	private HashMap<String, String> map;
@@ -51,7 +51,6 @@ public class InventoryUhfc71 {
 		String stato = "0";
 		
 		boolean sav = false;
-		String strBarcode = new String();
 		barcode2DWithSoft = Barcode2DWithSoft.getInstance();
 		try {
 			mReader = RFIDWithUHF.getInstance();
