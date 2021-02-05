@@ -96,7 +96,7 @@ public class InventoryUhfc71 {
 
 	public Barcode2DWithSoft.ScanCallback  ScanBack= new Barcode2DWithSoft.ScanCallback(){
         @Override
-        public String onScanComplete(int i, int length, byte[] bytes) {
+        public void onScanComplete(int i, int length, byte[] bytes) {
             if (length < 1) {
                 if (length == -1) {
                     strBarcode += "Scan cancel";
