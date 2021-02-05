@@ -49,7 +49,7 @@ public class InventoryUhfc71 {
 		loopFlag = false;
 		listaTags = new ArrayList<String>();
 		String stato = "0";
-		
+		strBarcode = "";
 		boolean sav = false;
 		barcode2DWithSoft = Barcode2DWithSoft.getInstance();
 		try {
@@ -96,12 +96,12 @@ public class InventoryUhfc71 {
 
 	public Barcode2DWithSoft.ScanCallback  ScanBack= new Barcode2DWithSoft.ScanCallback(){
         @Override
-        public void onScanComplete(int i, int length, byte[] bytes) {
+        public String onScanComplete(int i, int length, byte[] bytes) {
             if (length < 1) {
                 if (length == -1) {
-                    this.strBarcode += "Scan cancel";
+                    strBarcode += "Scan cancel";
                 } else if (length == 0) {
-					this.strBarcode += "Scan TimeOut";
+					strBarcode += "Scan TimeOut";
                 } else {
                     //Log.i(TAG,"Scan fail");
                 }
@@ -115,7 +115,7 @@ public class InventoryUhfc71 {
                     barCode = new String(bytes, 0, length, "ASCII");
                 //}
                 //catch (UnsupportedEncodingException ex)   {}
-                this.strBarcode = barCode;
+                strBarcode = barCode;
             }
 
         }
