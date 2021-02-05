@@ -90,10 +90,11 @@ public class Uhfc71 extends CordovaPlugin {
 			//Toast.makeText(webView.getContext(), "Start" + iu, Toast.LENGTH_LONG).show();
 			iu.ScanBarcode();
 			try {
-				//Thread.sleep(waittime);
+				Thread.sleep(waittime);
 			} catch (Exception e) {
 
 			}
+			iu.StopBarcode();
 			//Toast.makeText(webView.getContext(), "Stop", Toast.LENGTH_LONG).show();
 			
 			

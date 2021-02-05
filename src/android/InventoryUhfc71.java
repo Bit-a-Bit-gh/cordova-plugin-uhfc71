@@ -131,6 +131,14 @@ public class InventoryUhfc71 {
         //}
 	}
 
+	public void StopBarcode() {
+		//if(barcode2DWithSoft!=null) {
+            //Log.i(TAG,"ScanBarcode");
+
+			barcode2DWithSoft.stopScan();
+        //}
+	}
+
 	public String GetBarcode() {
 		return this.strBarcode;
 	}
