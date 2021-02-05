@@ -1,7 +1,7 @@
 {
   "name": "cordova-plugin-uhfc71",
   "version": "0.0.1",
-  "description": "Cordova Rfid UHF Chainway C71 Plugin",
+  "description": "Cordova RFID UHF Chainway C71 Plugin",
   "cordova": {
     "id": "cordova-plugin-uhfc71",
     "platforms": [
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SaverioDiDomenico/cordova-plugin-uhfc71.git"
+    "url": "git+https://github.com/Bit-a-Bit-gh/cordova-plugin-uhfc71.git"
   },
   "keywords": [
     "cordova",
@@ -34,5 +34,5 @@
   "bugs": {
     "url": "https://github.com/SaverioDiDomenico/cordova-plugin-uhfc71/issues"
   },
-  "homepage": "https://github.com/SaverioDiDomenico/cordova-plugin-uhfc71#readme"
+  "homepage": "https://github.com/Bit-a-Bit-gh/cordova-plugin-uhfc71#readme"
 }

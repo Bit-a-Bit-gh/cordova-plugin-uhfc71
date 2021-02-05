@@ -14,15 +14,18 @@ import java.util.List;
 public class Uhfc71 extends CordovaPlugin {
 	@Override
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-		if ("scan".equals(action)) {
-			scan(args.getString(0), args.getLong(1), args.getLong(2), callbackContext);
+		if ("rfidScan".equals(action)) {
+			rfidScan(args.getString(0), args.getLong(1), args.getLong(2), callbackContext);
+			return true;
+		} else if ("barcodeScan".equals(action)) {
+			barcodeScan(args.getLong(0), args.getLong(1), callbackContext);
 			return true;
 		}
 
 		return false;
 	}
 
-	private void scan(String epc, long waittime, long txpower, CallbackContext callbackContext) {
+	private void rfidScan(String epc, long waittime, long txpower, CallbackContext callbackContext) {
 		try {
 			 Context context = this.cordova.getActivity().getApplicationContext();
 			
@@ -39,11 +42,10 @@ public class Uhfc71 extends CordovaPlugin {
 			iu.StopInventoryStream();
 			
 			
-			String result = "NO-TAGS";
+			String result = "";
 
 			if(epc.isEmpty()) {
 				result = iu.GetTags();
-				//result = iu.Inv();
 				
 				if(result.isEmpty()){
 					result = "NO-TAGS";
@@ -51,7 +53,7 @@ public class Uhfc71 extends CordovaPlugin {
 				
 				
 								
-			}else {
+			} else {
 				//result = iu.GetTags();
 				String tags[] = result.split(",");
 				List<String> lista = new ArrayList<String>();
@@ -69,6 +71,39 @@ public class Uhfc71 extends CordovaPlugin {
 			}
 
 
+			//Toast.makeText(webView.getContext(), iu.mUiResultMsg, Toast.LENGTH_LONG).show();
+			callbackContext.success(result);
+
+		} catch (Exception e) {
+			callbackContext.error(e.toString());
+		}
+
+
+	}
+
+	private void barcodeScan(long waittime, long txpower, CallbackContext callbackContext) {
+		try {
+			 Context context = this.cordova.getActivity().getApplicationContext();
+			
+			//Toast.makeText(webView.getContext(), "Costruttore", Toast.LENGTH_LONG).show();			
+			InventoryUhfc71 iu = new InventoryUhfc71(context, txpower);			
+			//Toast.makeText(webView.getContext(), "Start" + iu, Toast.LENGTH_LONG).show();
+			iu.ScanBarcode();
+			try {
+				//Thread.sleep(waittime);
+			} catch (Exception e) {
+
+			}
+			//Toast.makeText(webView.getContext(), "Stop", Toast.LENGTH_LONG).show();
+			
+			
+			String result = iu.GetBarcode();
+
+			if(result.isEmpty()) {
+				
+				result = "NO-BARCODES";
+								
+			}
 			//Toast.makeText(webView.getContext(), iu.mUiResultMsg, Toast.LENGTH_LONG).show();
 			callbackContext.success(result);
 

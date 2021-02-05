@@ -4,7 +4,7 @@ var Uhfc71 = function() {
     console.log('Uhfc71 instanced');
 };
 
-Uhfc71.prototype.scan = function(epc, waittime, txpower, onSuccess, onError) {
+Uhfc71.prototype.rfidScan = function(epc, waittime, txpower, onSuccess, onError) {
     var errorCallback = function(obj) {
         onError(obj);
     };
@@ -13,7 +13,19 @@ Uhfc71.prototype.scan = function(epc, waittime, txpower, onSuccess, onError) {
         onSuccess(obj);
     };
 
-    exec(successCallback, errorCallback, 'Uhfc71', 'scan', [epc, waittime, txpower]);
+    exec(successCallback, errorCallback, 'Uhfc71', 'rfidScan', [epc, waittime, txpower]);
+};
+
+Uhfc71.prototype.barcodeScan = function(waittime, txpower, onSuccess, onError) {
+    var errorCallback = function(obj) {
+        onError(obj);
+    };
+
+    var successCallback = function(obj) {
+        onSuccess(obj);
+    };
+
+    exec(successCallback, errorCallback, 'Uhfc71', 'barcodeScan', [waittime, txpower]);
 };
 
 if (typeof module != 'undefined' && module.exports) {

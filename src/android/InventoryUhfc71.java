@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.rscja.deviceapi.RFIDWithUHF;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
@@ -29,13 +28,16 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.os.Build;
 
+import com.rscja.deviceapi.RFIDWithUHF;
+import com.zebra.adc.decoder.Barcode2DWithSoft;
+
 public class InventoryUhfc71 {
 
 	public Context  mContext;
-	//public Handler handler;	
 	public RFIDWithUHF mReader; 
 	public boolean loopFlag;
-
+	public String barCode="";
+	Barcode2DWithSoft barcode2DWithSoft=null;
 	List<String> listaTags;
 	private HashMap<String, String> map;
 	private ArrayList<HashMap<String, String>> tagList;
@@ -48,7 +50,9 @@ public class InventoryUhfc71 {
 		listaTags = new ArrayList<String>();
 		String stato = "0";
 		
-		boolean sav = false;		
+		boolean sav = false;
+		String strBarcode = "";
+		barcode2DWithSoft = Barcode2DWithSoft.getInstance();
 		try {
 			mReader = RFIDWithUHF.getInstance();
 			sav = mReader.init();
@@ -56,13 +60,6 @@ public class InventoryUhfc71 {
 
 		}
 
-		/*
-		try{
-			Thread.sleep(5000);
-		} catch (Exception ex) {	
-		}
-		*/		
-		
 		try {
 			mReader.setPower((int) txpower);			
 		} catch (Exception ex) {
@@ -88,15 +85,55 @@ public class InventoryUhfc71 {
 		};
 		*/
 	}
-	
-	  private void init() {
+
+	private void init() {
 		boolean es = false;
-		try {			
-			es = this.mReader.init();			
+		try {
+			es = this.mReader.init();
 		} catch (Exception e) {
 			es = false;
 		}
-	  }
+	}
+
+	public Barcode2DWithSoft.ScanCallback  ScanBack= new Barcode2DWithSoft.ScanCallback(){
+        @Override
+        public void onScanComplete(int i, int length, byte[] bytes) {
+            if (length < 1) {
+                if (length == -1) {
+                    strBarcode += "Scan cancel";
+                } else if (length == 0) {
+					strBarcode += "Scan TimeOut";
+                } else {
+                    //Log.i(TAG,"Scan fail");
+                }
+            }else{
+                barCode="";
+
+
+              //  String res = new String(dd,"gb2312");
+                try {
+                    //Log.i("Ascii",seldata);
+                    barCode = new String(bytes, 0, length, "ASCII");
+                }
+                catch (UnsupportedEncodingException ex)   {}
+                strBarcode = barCode;
+            }
+
+        }
+    };
+
+	public void ScanBarcode() {
+		if(barcode2DWithSoft!=null) {
+            //Log.i(TAG,"ScanBarcode");
+
+            barcode2DWithSoft.scan();
+            barcode2DWithSoft.setScanCallback(ScanBack);
+        }
+	}
+
+	public String GetBarcode() {
+		return strBarcode;
+	}
 
 	public void StartInventoryStream() {
 		

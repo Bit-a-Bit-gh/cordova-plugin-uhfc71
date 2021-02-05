@@ -2,40 +2,38 @@
     <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
             id="cordova-plugin-uhfc71" version="0.0.1">
         <name>Uhfc71</name>
-        <description>Cordova Rfid UHF Chainway C71 Plugin</description>
+        <description>Cordova RFID UHF Chainway C71 Plugin</description>
         <license>Apache 2.0</license>
         <keywords>cordova,device,rfid,uhf,chainway,c71</keywords>
-		<engines>
-			<engine name="cordova" version=">=3.0.0" />
-		</engines>
+        <engines>
+            <engine name="cordova" version=">=3.0.0" />
+        </engines>
         <js-module src="www/Uhfc71.js" name="Uhfc71">
             <clobbers target="Uhfc71" />
         </js-module>
-    <platform name="android">
-        <config-file target="config.xml" parent="/*">
-            <feature name="Uhfc71">
-                <param name="android-package" value="it.dynamicid.Uhfc71"/>
-            </feature>
-        </config-file>
-	        
-	    	<source-file src="src/android/Uhfc71.java" target-dir="src/it/dynamicid/uhfc71" />
-	    	<source-file src="src/android/InventoryUhfc71.java" target-dir="src/it/dynamicid/uhfc71" />
-	    
-	    <lib-file src="src/cw-deviceapi20191022.jar" />	    
-	        
-	    <source-file src="src/libDeviceAPI.so" target-dir="jniLibs/armeabi" />
-	    <source-file src="src/libSDL.so" target-dir="jniLibs/armeabi" />
-	    <source-file src="src/libIAL.so" target-dir="jniLibs/armeabi" />
-	    <source-file src="src/libbarcodereader43.so" target-dir="jniLibs/armeabi" />
-	    <source-file src="src/libHsmKil.so" target-dir="jniLibs/armeabi" />
-	    <source-file src="src/libHSMDecoderAPI.so" target-dir="jniLibs/armeabi" />
-	    <source-file src="src/libHHPScanInterface.so" target-dir="jniLibs/armeabi" />
-	    <source-file src="src/libbarcodereader.so" target-dir="jniLibs/armeabi" />
-	    <source-file src="src/libbarcodereader44.so" target-dir="jniLibs/armeabi" />
-	    
+        <platform name="android">
+        
+            <config-file target="config.xml" parent="/*">
+                <feature name="Uhfc71">
+                    <param name="android-package" value="it.dynamicid.Uhfc71"/>
+                </feature>
+            </config-file>
 
-	    
+            <source-file src="src/android/Uhfc71.java" target-dir="src/it/dynamicid/uhfc71" />
+            <source-file src="src/android/InventoryUhfc71.java" target-dir="src/it/dynamicid/uhfc71" />
 
-    </platform>
+            <lib-file src="src/cw-deviceapi20191022.jar" />
+
+            <source-file src="src/libDeviceAPI.so" target-dir="jniLibs/armeabi" />
+            <source-file src="src/libSDL.so" target-dir="jniLibs/armeabi" />
+            <source-file src="src/libIAL.so" target-dir="jniLibs/armeabi" />
+            <source-file src="src/libbarcodereader43.so" target-dir="jniLibs/armeabi" />
+            <source-file src="src/libHsmKil.so" target-dir="jniLibs/armeabi" />
+            <source-file src="src/libHSMDecoderAPI.so" target-dir="jniLibs/armeabi" />
+            <source-file src="src/libHHPScanInterface.so" target-dir="jniLibs/armeabi" />
+            <source-file src="src/libbarcodereader.so" target-dir="jniLibs/armeabi" />
+            <source-file src="src/libbarcodereader44.so" target-dir="jniLibs/armeabi" />
+
+        </platform>
     </plugin>
-	
+
