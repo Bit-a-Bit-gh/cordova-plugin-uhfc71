@@ -3,6 +3,7 @@ package it.dynamicid;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.io.UnsupportedEncodingException;
 
 import android.content.Context;
 import android.os.Handler;
@@ -110,11 +111,11 @@ public class InventoryUhfc71 {
 
 
               //  String res = new String(dd,"gb2312");
-                //try {
+                try {
                     //Log.i("Ascii",seldata);
                     barCode = new String(bytes, 0, length, "ASCII");
-                //}
-                //catch (UnsupportedEncodingException ex)   {}
+                }
+                catch (UnsupportedEncodingException ex)   {}
                 strBarcode = barCode;
             }
 
