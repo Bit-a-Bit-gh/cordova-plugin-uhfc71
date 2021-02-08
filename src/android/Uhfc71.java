@@ -18,7 +18,13 @@ public class Uhfc71 extends CordovaPlugin {
 			rfidScan(args.getString(0), args.getLong(1), args.getLong(2), callbackContext);
 			return true;
 		} else if ("barcodeScan".equals(action)) {
-			barcodeScan(args.getLong(0), args.getLong(1), callbackContext);
+			cordova.getActivity().runOnUiThread(new Runnable() {
+				public void run() {
+					barcodeScan(args.getLong(0), args.getLong(1), callbackContext);
+					callbackContext.success(); // Thread-safe.
+				}
+			});
+			//barcodeScan(args.getLong(0), args.getLong(1), callbackContext);
 			return true;
 		}
 
