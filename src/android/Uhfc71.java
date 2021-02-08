@@ -92,7 +92,7 @@ public class Uhfc71 extends CordovaPlugin {
 			 Context context = this.cordova.getActivity().getApplicationContext();
 			
 			//Toast.makeText(webView.getContext(), "Costruttore", Toast.LENGTH_LONG).show();			
-			InventoryUhfc71 iu = new InventoryUhfc71(context);			
+			InventoryUhfc71 iu = new InventoryUhfc71(context, 10);			
 			//Toast.makeText(webView.getContext(), "Start" + iu, Toast.LENGTH_LONG).show();
 			iu.ScanBarcode();
 			try {
