@@ -20,7 +20,7 @@ public class Uhfc71 extends CordovaPlugin {
 		} else if ("barcodeScan".equals(action)) {
 			cordova.getActivity().runOnUiThread(new Runnable() {
 				public void run() {
-					barcodeScan(args.getLong(0), args.getLong(1), callbackContext);
+					barcodeScan(callbackContext);
 					callbackContext.success(); // Thread-safe.
 				}
 			});
@@ -87,7 +87,7 @@ public class Uhfc71 extends CordovaPlugin {
 
 	}
 
-	private void barcodeScan(long waittime, long txpower, CallbackContext callbackContext) {
+	private void barcodeScan(CallbackContext callbackContext) {
 		try {
 			 Context context = this.cordova.getActivity().getApplicationContext();
 			

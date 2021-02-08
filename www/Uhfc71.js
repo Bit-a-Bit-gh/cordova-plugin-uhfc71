@@ -16,7 +16,7 @@ Uhfc71.prototype.rfidScan = function(epc, waittime, txpower, onSuccess, onError)
     exec(successCallback, errorCallback, 'Uhfc71', 'rfidScan', [epc, waittime, txpower]);
 };
 
-Uhfc71.prototype.barcodeScan = function(waittime, txpower, onSuccess, onError) {
+Uhfc71.prototype.barcodeScan = function(onSuccess, onError) {
     var errorCallback = function(obj) {
         onError(obj);
     };
@@ -25,7 +25,7 @@ Uhfc71.prototype.barcodeScan = function(waittime, txpower, onSuccess, onError) {
         onSuccess(obj);
     };
 
-    exec(successCallback, errorCallback, 'Uhfc71', 'barcodeScan', [waittime, txpower]);
+    exec(successCallback, errorCallback, 'Uhfc71', 'barcodeScan');
 };
 
 if (typeof module != 'undefined' && module.exports) {
